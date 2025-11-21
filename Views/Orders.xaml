@@ -1,0 +1,199 @@
+﻿<Page x:Class="Massiv.Views.Orders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Massiv.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1300"
+      Title="Orders">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" 
+                    Background="{StaticResource LightPink}" 
+                    HorizontalAlignment="Stretch" 
+                    CornerRadius="25" 
+                    Margin="10,25,0,25">
+                <TextBox Style="{StaticResource TextBox}" Margin="10,0" VerticalAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            </Border>
+            <Grid Grid.Column="1">
+                <Button Margin="30,10"
+Width="40" Height="40" Style="{StaticResource RoundButtonStyleTransparent}">
+                    <Image Width="40" Source="pack://application:,,,/Images/find.png"/>
+                </Button>
+            </Grid>
+        </Grid>
+        <DataGrid Margin="0,0"
+                  Grid.Row="1" 
+                  SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
+                  x:Name="DGridOrder" 
+                  ItemsSource="{Binding Orders}"
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"  
+                  Style="{StaticResource CustomDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DefaultColumnHeaderStyle}"
+                  RowStyle="{StaticResource CustomRowStyle}"
+                  CellStyle="{StaticResource CustomCellStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№ заказа" 
+                    Binding="{Binding NumberOrder}" 
+                    Width="*"/>
+                <DataGridTextColumn Header="Дата заключения договора" 
+                           Binding="{Binding ContractDate, StringFormat='dd.MM.yyyy'}"
+                           Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding }"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Дата оформления" 
+                           Binding="{Binding OrderDate, StringFormat='dd.MM.yyyy'}"
+                                  Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" 
+               TextWrapping="Wrap"
+               TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Дата отдачи в производство" 
+                           Binding="{Binding ProductionStartDate, StringFormat='dd.MM.yyyy'}"
+                                  Width="120">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" 
+               TextWrapping="Wrap"
+               TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Изделие" Binding="{Binding Product}" Width="*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding ClientPhone}" Width="*"/>
+                <DataGridTextColumn Header="Дата сдачи" Binding="{Binding CompletionDate, StringFormat='dd.MM.yyyy'}" Width="*"/>
+                <DataGridTextColumn Header="Дата готовности" 
+            Binding="{Binding ReadyDate}"
+                   Width="100">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" 
+TextWrapping="Wrap"
+TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Статус" Width="Auto">
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="15" Height="30" Width="Auto" Padding="5,0" Background="{Binding StatusColor}">
+                                <TextBlock Text="{Binding StatusText}" Foreground="White" Style="{StaticResource TextBlock}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Menu Margin="10,0,10,0" Style="{StaticResource CustomMenuStyle}" Width="50">
+                                <MenuItem Style="{StaticResource MainMenuItemStyle}">
+                                    <MenuItem.Header>
+                                        <Image Width = "25" Source = "pack://application:,,,/Images/actions.png" />
+                                    </MenuItem.Header>
+                                    <MenuItem Header="Просмотреть" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanDelete, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                                                                                                                               Command="{Binding DataContext.ReadOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Редактировать" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanEdit, Converter={StaticResource BooleanToVisibilityConverter}}"   Command="{Binding DataContext.EditOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+         CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Завершить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanComplete, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                                                                                 Command="{Binding DataContext.CompleteOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Удалить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanDelete, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                                   Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Восстановить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanRestore, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                                                                                Command="{Binding DataContext.RestoreOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Вернуть" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanBack, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                                                                                                                              Command="{Binding DataContext.BackOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+CommandParameter="{Binding}"/>
+                                </MenuItem>
+                            </Menu>
+                           
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Background="{StaticResource Purple}" Content="Экспорт в Excel" Grid.Column="0"
+                    Width="290" 
+                    Height="50"
+                    Style="{StaticResource Button}"
+                    Foreground="White"
+                    Command="{Binding ExportToExcelCommand}"
+                     Visibility="{Binding IsButtonExportVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button Background="{StaticResource Purple}" 
+                    Content="Добавить"  
+                    Grid.Column="1"
+                    Foreground="White"
+                            Width="202" 
+                            Height="50"
+                            Style="{StaticResource Button}"
+                     Command="{Binding AddOrderCommand}"
+                     Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+    </Grid>
+</Page>
