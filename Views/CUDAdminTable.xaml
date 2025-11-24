@@ -1,0 +1,87 @@
+﻿<Window x:Class="Massiv.Views.CUDAdminTable"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Massiv.Views"
+      mc:Ignorable="d" 
+      Height="430" Width="530"
+      Title="CUDAdminTable"
+      WindowStartupLocation="CenterScreen"
+      ResizeMode="NoResize" 
+      Background="Transparent"
+      WindowStyle="None"
+      AllowsTransparency="True">
+
+    <Border CornerRadius="20" Background="{StaticResource DarkPurple}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Margin="15,15" Width="40" Height="40" 
+                Style="{StaticResource RoundButtonStyleTransparent}" 
+                VerticalAlignment="Top" HorizontalAlignment="Right"  
+                Cursor="Hand"
+                Command="{Binding CloseCommand}">
+                <Image Width="40" Source="pack://application:,,,/Images/close.png"/>
+            </Button>
+            <Grid Grid.Row="1" Margin="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Style="{StaticResource TextBlock}" 
+                           Foreground="White" 
+                           Text="Логин"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                        />
+                <Border Grid.Row="0" Grid.Column="1" 
+                        Background="White" 
+                        Height="42" 
+                        CornerRadius="20"
+                        VerticalAlignment="Center">
+                    <TextBox Style="{StaticResource TextBox}" 
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               Margin="10,0"
+                               Text="{Binding Login}"/>
+                </Border>
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Style="{StaticResource TextBlock}" 
+                           Foreground="White" 
+                           Text="Роль"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                <Border Grid.Row="1" Grid.Column="1" 
+                        Background="White" 
+                        Height="42" 
+                        CornerRadius="20"
+                        VerticalAlignment="Center">
+                    <ComboBox
+                    IsEnabled="{Binding IsRead, Converter={StaticResource BooleanToIndexConverter}}"
+SelectedIndex="{Binding CurrentOrder.TableAvailable, Converter={StaticResource BooleanToIndexConverter}, Mode=TwoWay}"
+Style="{StaticResource RoundComboBoxStyleWhite}"
+Margin="10,0"
+VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+            <Button Grid.Row="2" 
+                Style="{StaticResource Button}" 
+                Content="Сохранить" 
+                Background="{StaticResource Green}" 
+                Width="150" 
+                Height="50"
+                Margin="0,0,0,20"
+                Command="{Binding LogoutCommand}"/>
+        </Grid>
+    </Border>
+</Window>

@@ -46,10 +46,10 @@ Width="40" Height="40" Style="{StaticResource RoundButtonStyleTransparent}">
                   CellStyle="{StaticResource CustomCellStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ заказа" 
-                    Binding="{Binding NumberOrder}" 
+                    Binding="{Binding OrderNumber}" 
                     Width="*"/>
-                <DataGridTextColumn Header="Дата заключения договора" 
-                           Binding="{Binding ContractDate, StringFormat='dd.MM.yyyy'}"
+                <DataGridTextColumn Header="Плановая дата отгрузки" 
+                           Binding="{Binding PlanDate, StringFormat='dd.MM.yyyy'}"
                            Width="110">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
@@ -66,48 +66,22 @@ Width="40" Height="40" Style="{StaticResource RoundButtonStyleTransparent}">
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-
-                <DataGridTextColumn Header="Дата оформления" 
-                           Binding="{Binding OrderDate, StringFormat='dd.MM.yyyy'}"
-                                  Width="110">
-                    <DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            <Setter Property="ContentTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}" 
-               TextWrapping="Wrap"
-               TextAlignment="Center"/>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGridTextColumn.HeaderStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Дата отдачи в производство" 
-                           Binding="{Binding ProductionStartDate, StringFormat='dd.MM.yyyy'}"
-                                  Width="120">
-                    <DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            <Setter Property="ContentTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}" 
-               TextWrapping="Wrap"
-               TextAlignment="Center"/>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGridTextColumn.HeaderStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Изделие" Binding="{Binding Product}" Width="*"/>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding ClientPhone}" Width="*"/>
-                <DataGridTextColumn Header="Дата сдачи" Binding="{Binding CompletionDate, StringFormat='dd.MM.yyyy'}" Width="*"/>
-                <DataGridTextColumn Header="Дата готовности" 
-            Binding="{Binding ReadyDate}"
+                <DataGridTextColumn Header="ЛДСП" Binding="{Binding LDSP}" Width="*"/>
+                <DataGridTextColumn Header="Кр 1.0" Binding="{Binding Kr1}" Width="*"/>
+                <DataGridTextColumn Header="Фурнитура" Binding="{Binding Furniture}" Width="*"/>
+                <DataGridTextColumn Header="Ручки" Binding="{Binding Hands}" Width="*"/>
+                <DataGridTextColumn Header="Крепеж" Binding="{Binding Anchor}" Width="*"/>
+                <DataGridTextColumn Header="Стол." Binding="{Binding Table}" Width="*"/>
+                <DataGridTextColumn Header="Кр. к стол." Binding="{Binding KrTable}" Width="*"/>
+                <DataGridTextColumn Header="Кр. 3D" Binding="{Binding Kr3D}" Width="*"/>
+                <DataGridTextColumn Header="Борт" Binding="{Binding Side}" Width="*"/>
+                <DataGridTextColumn Header="Цоколь" Binding="{Binding Base}" Width="*"/>
+                <DataGridTextColumn Header="Стекла" Binding="{Binding Glass}" Width="*"/>
+                <DataGridTextColumn Header="Вытяжка" Binding="{Binding RangeHood}" Width="*"/>
+                <DataGridTextColumn Header="Мойка" Binding="{Binding Wash}" Width="*"/>
+                <DataGridTextColumn Header="Ст.панель" Binding="{Binding Panel}" Width="*"/>
+                <DataGridTextColumn Header="Дата отгрузки" 
+            Binding="{Binding ShipmentDate}"
                    Width="100">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
@@ -124,22 +98,6 @@ TextAlignment="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn Header="Статус" Width="Auto">
-                    <DataGridTemplateColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DefaultColumnHeaderStyle}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        </Style>
-                    </DataGridTemplateColumn.HeaderStyle>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Border CornerRadius="15" Height="30" Width="Auto" Padding="5,0" Background="{Binding StatusColor}">
-                                <TextBlock Text="{Binding StatusText}" Foreground="White" Style="{StaticResource TextBlock}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"/>
-                            </Border>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -148,9 +106,6 @@ TextAlignment="Center"/>
                                     <MenuItem.Header>
                                         <Image Width = "25" Source = "pack://application:,,,/Images/actions.png" />
                                     </MenuItem.Header>
-                                    <MenuItem Header="Просмотреть" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanDelete, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                                                                                                                                               Command="{Binding DataContext.ReadOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-CommandParameter="{Binding}"/>
                                     <MenuItem Header="Редактировать" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanEdit, Converter={StaticResource BooleanToVisibilityConverter}}"   Command="{Binding DataContext.EditOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
          CommandParameter="{Binding}"/>
                                     <MenuItem Header="Завершить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanComplete, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -159,6 +114,39 @@ CommandParameter="{Binding}"/>
                                     <MenuItem Header="Удалить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanDelete, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                                                    Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
 CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Цвет" Style="{StaticResource SubMenuItemStyle}">
+                                        <MenuItem Header="Оранжевый" Style="{StaticResource SubMenuItemStyle}"
+                      Command="{Binding DataContext.ChangeColorCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      CommandParameter="Orange">
+                                            <MenuItem.Icon>
+                                                <Border Width="12" Height="12" Background="#FFA500" CornerRadius="2"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+
+                                        <MenuItem Header="Красный" Style="{StaticResource SubMenuItemStyle}"
+                      Command="{Binding DataContext.ChangeColorCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      CommandParameter="Red">
+                                            <MenuItem.Icon>
+                                                <Border Width="12" Height="12" Background="#FF4444" CornerRadius="2"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+
+                                        <MenuItem Header="Голубой" Style="{StaticResource SubMenuItemStyle}"
+                      Command="{Binding DataContext.ChangeColorCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      CommandParameter="LightBlue">
+                                            <MenuItem.Icon>
+                                                <Border Width="12" Height="12" Background="#87CEEB" CornerRadius="2"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+
+                                        <MenuItem Header="Серый" Style="{StaticResource SubMenuItemStyle}"
+                      Command="{Binding DataContext.ChangeColorCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      CommandParameter="Gray">
+                                            <MenuItem.Icon>
+                                                <Border Width="12" Height="12" Background="#808080" CornerRadius="2"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </MenuItem>
                                     <MenuItem Header="Восстановить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanRestore, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                                                                                                 Command="{Binding DataContext.RestoreOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
 CommandParameter="{Binding}"/>
@@ -195,6 +183,15 @@ CommandParameter="{Binding}"/>
                             Style="{StaticResource Button}"
                      Command="{Binding AddOrderCommand}"
                      Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button Background="{StaticResource Grey}" 
+        Content="Меню"  
+        Grid.Column="2"
+        Foreground="White"
+                Width="202" 
+                Height="50"
+                Style="{StaticResource Button}"
+         Command="{Binding AddOrderCommand}"
+         Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 </Page>

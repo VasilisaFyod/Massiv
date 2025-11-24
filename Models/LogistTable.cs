@@ -27,6 +27,8 @@ public partial class LogistTable
 
     public string? Kr3D { get; set; }
 
+    public string? KrTable { get; set; }
+
     public string? Side { get; set; }
 
     public string? Base { get; set; }
