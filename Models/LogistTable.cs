@@ -43,9 +43,9 @@ public partial class LogistTable
 
     public string? ShipmentDate { get; set; }
 
-    public bool? IsCompleted { get; set; }
+    public bool? IsCompleted { get; set; } = false;
 
-    public bool? IsDeleted { get; set; }
+    public bool IsDeleted { get; set; } = false;
 
     public string? ColorMark { get; set; }
 }

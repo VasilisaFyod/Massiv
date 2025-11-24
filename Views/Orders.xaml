@@ -194,6 +194,15 @@ CommandParameter="{Binding}"/>
                             Style="{StaticResource Button}"
                      Command="{Binding AddOrderCommand}"
                      Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button Background="{StaticResource Grey}" 
+Content="Меню"  
+Grid.Column="2"
+Foreground="White"
+        Width="202" 
+        Height="50"
+        Style="{StaticResource Button}"
+ Command="{Binding MenuCommand}"
+ Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 </Page>

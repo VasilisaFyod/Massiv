@@ -23,6 +23,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Button Margin="15,15" Width="40" Height="40" 
@@ -37,52 +38,98 @@
                    Foreground="White" Style="{StaticResource Title}" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Margin="0,20"/>
+
             <Grid Grid.Row="1" Margin="10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" 
-                           Style="{StaticResource RoundButtonStyleTransparent}" 
-                           Foreground="White" 
-                           Content="Общая таблица"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                            FontSize="18"
-                          />
+                    Style="{StaticResource RoundButtonStyleTransparent}" 
+                    Foreground="White" 
+                    Content="Общая таблица"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="18"
+                    Command="{Binding OpenGeneralTableCommand}"/>
                 <Rectangle Grid.Row="1" Height="1" Margin="80,0" Fill="White" VerticalAlignment="Center"/>
             </Grid>
-            <TextBlock
-                Grid.Row="2" Text="Мои таблицы" 
+
+            <TextBlock Grid.Row="2" Text="Мои таблицы" 
                    Foreground="White"  
                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="18"
-                />
+                   FontSize="18"/>
+
             <Button Grid.Row="3" 
                 Style="{StaticResource RoundButtonStyleTransparent}" 
-                Content="&#9726; Беларусь" 
                 Foreground="White"
-                FontSize="18"/>
+                FontSize="18"
+                Command="{Binding OpenLogistTableCommand}"
+                CommandParameter="b">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="&#9726;" Margin="0,0,8,0"/>
+                    <TextBlock Text="Беларусь"/>
+                </StackPanel>
+            </Button>
+
             <Button Grid.Row="4" 
-    Style="{StaticResource RoundButtonStyleTransparent}" 
-    Content="&#9726; Внутренние" 
-    Foreground="White"
-    FontSize="18"/>
+                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Foreground="White"
+                FontSize="18"
+                Command="{Binding OpenLogistTableCommand}"
+                CommandParameter="i">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="&#9726;" Margin="0,0,8,0"/>
+                    <TextBlock Text="Внутренние"/>
+                </StackPanel>
+            </Button>
+
             <Button Grid.Row="5" 
-    Style="{StaticResource RoundButtonStyleTransparent}" 
-    Content="&#9726; Москва (перекупщики)" 
-    Foreground="White"
-    FontSize="18"/>
+                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Foreground="White"
+                FontSize="18"
+                Command="{Binding OpenLogistTableCommand}"
+                CommandParameter="m">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="&#9726;"  Margin="0,0,8,0"/>
+                    <TextBlock Text="Москва (перекупщики)"/>
+                </StackPanel>
+            </Button>
+
             <Button Grid.Row="6" 
-    Style="{StaticResource RoundButtonStyleTransparent}" 
-    Content="&#9726; Корпус" 
-    Foreground="White"
-    FontSize="18"/>
+                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Foreground="White"
+                FontSize="18"
+                Command="{Binding OpenLogistTableCommand}"
+                CommandParameter="c">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="&#9726;" Margin="0,0,8,0"/>
+                    <TextBlock Text="Корпус"/>
+                </StackPanel>
+            </Button>
+
             <Button Grid.Row="7" 
-    Style="{StaticResource RoundButtonStyleTransparent}" 
-    Content="&#9726; Сп" 
-    Foreground="White"
-    FontSize="18"/>
+                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Foreground="White"
+                FontSize="18"
+                Command="{Binding OpenLogistTableCommand}"
+                CommandParameter="sp">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="&#9726;"  Margin="0,0,8,0"/>
+                    <TextBlock Text="Сп"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="8" 
+                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Foreground="White"
+                FontSize="18"
+                Command="{Binding OpenLogistTableCommand}"
+                CommandParameter="r">  
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="&#9726;"  Margin="0,0,8,0"/>
+                    <TextBlock Text="Рекламации"/>
+                </StackPanel>
+            </Button>
         </Grid>
     </Border>
 </Window>

@@ -2,6 +2,7 @@
 using Massiv.Views;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -61,6 +62,7 @@ namespace Massiv.ViewModels
         public ICommand RestoreOrderCommand { get; }
         public ICommand BackOrderCommand { get; }
         public ICommand ReadOrderCommand { get; }
+        public ICommand MenuCommand { get; }
         public OrdersViewModel(MassivContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
@@ -73,6 +75,7 @@ namespace Massiv.ViewModels
             DeleteOrderCommand = new RelayCommand(DeleteOrder);
             CompleteOrderCommand = new RelayCommand(CompleteOrder);
             ReadOrderCommand = new RelayCommand(ReadOrder);
+            MenuCommand = new RelayCommand(Menu);
             LoadOrdersCommand.Execute(null);
         }
 
@@ -260,6 +263,13 @@ namespace Massiv.ViewModels
             var exportExcelWindow = new ExportExcel();
             exportExcelWindow.DataContext = new ExportExcelViewModel(exportExcelWindow, _context, 1);
             exportExcelWindow.ShowDialog();
+        }
+        
+        private void Menu()
+        {
+            var menuWindow = new MenuView();
+            menuWindow.DataContext = new MenuViewModel();
+            menuWindow.ShowDialog();
         }
     }
 }

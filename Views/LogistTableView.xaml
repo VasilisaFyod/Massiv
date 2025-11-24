@@ -190,7 +190,7 @@ CommandParameter="{Binding}"/>
                 Width="202" 
                 Height="50"
                 Style="{StaticResource Button}"
-         Command="{Binding AddOrderCommand}"
+         Command="{Binding MenuCommand}"
          Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </Grid>
