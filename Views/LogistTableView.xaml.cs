@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Massiv.Models;
+using Massiv.ViewModels;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace Massiv.Views
 {
     /// <summary>
@@ -20,9 +8,17 @@ namespace Massiv.Views
     /// </summary>
     public partial class LogistTableView : Page
     {
-        public LogistTableView()
+        public LogistTableView(int choice, MassivContext context, string tableType = null)
         {
             InitializeComponent();
+
+            DataContext = choice switch
+            {
+                1 => new LogistTablesViewModel(context, tableType),
+                2 => new CompletedLogistTablesViewModel(context, tableType),
+                3 => new DeletedLogistTablesViewModel(context, tableType),
+                _ => throw new ArgumentException("Invalid choice value")
+            };
         }
     }
 }

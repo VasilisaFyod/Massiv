@@ -6,4 +6,5 @@
     <SolidColorBrush x:Key="Purple" Color="#AB5FC0"/>
     <SolidColorBrush x:Key="LightPink" Color="#F7E3FD"/>
     <SolidColorBrush x:Key="Red" Color="#CB6C6C"/>
+    <SolidColorBrush x:Key="Green" Color="#87F39E"/>
 </ResourceDictionary>

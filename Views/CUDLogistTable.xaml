@@ -1,0 +1,228 @@
+﻿<Page x:Class="Massiv.Views.CUDLogistTable"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Massiv.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="1100" d:DesignWidth="1300"
+      Title="CUDLogistTable">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid Margin="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Margin="20,0,20,0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="№ заказа"/>
+                <Border Grid.Column="1" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,20,0,21">
+                    <TextBox 
+                        MaxLength="50" 
+                        Text="{Binding CurrentOrder.OrderNumber, Mode=TwoWay}" 
+             Style="{StaticResource TextBox}" 
+             HorizontalAlignment="Stretch"
+           VerticalAlignment="Center"
+        Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Width="140" TextWrapping="Wrap" Grid.Column="0"  Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Дата плановой отгрузки"/>
+                <Border Grid.Column="1" Grid.Row="1" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,20,0,21">
+                    <DatePicker   Style="{StaticResource CustomDatePickerStyle}" SelectedDate="{Binding CurrentOrder.PlanDate, Mode=TwoWay, Converter={StaticResource DateOnlyToDateTimeConverter}}"
+ SelectedDateFormat="Short"
+ Language="ru-RU"
+/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="2" Grid.Row="1"  VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Отгрузка"/>
+                <Border Grid.Column="3" Grid.Row="1" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,20,0,21">
+                    <TextBox 
+                        MaxLength="15" 
+                         Text="{Binding CurrentOrder.ShipmentDate, Mode=TwoWay}" 
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="ЛДСП"/>
+                <Border Grid.Column="1" Grid.Row="3" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,20,0,20">
+                    <TextBox 
+                        MaxLength="15" 
+                         Text="{Binding CurrentOrder.Ldsp, Mode=TwoWay}" 
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Кр. 1.0"/>
+                <Border Grid.Column="3" Grid.Row="3" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,20,0,20">
+                    <TextBox 
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Kr1, Mode=TwoWay}" 
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Grid.Row="3" Grid.Column="4" Margin="20,0,20,0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Фурнитура"/>
+                <Border Grid.Column="5" Grid.Row="3" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,16,0,17">
+                    <TextBox 
+                        MaxLength="15"  
+                        Text="{Binding CurrentOrder.Furniture, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Ручки"/>
+                <Border Grid.Column="1" Grid.Row="4" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,16,0,17">
+                    <TextBox 
+                        MaxLength="15"  
+                        Text="{Binding CurrentOrder.Hands, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Крепеж"/>
+                <Border Grid.Column="3" Grid.Row="4" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,16">
+                    <TextBox 
+                        MaxLength="15" 
+                         Text="{Binding CurrentOrder.Anchor, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="4" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Столешница"/>
+                <Border Grid.Column="5" Grid.Row="4" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,17">
+                    <TextBox 
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Table, Mode=TwoWay}"
+    Style="{StaticResource TextBox}" 
+    HorizontalAlignment="Stretch"
+VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Кр. к стол."/>
+                <Border Grid.Column="1" Grid.Row="5" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,17">
+                    <TextBox 
+                        MaxLength="15" 
+                         Text="{Binding CurrentOrder.KrTable, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Кр. 3D"/>
+                <Border Grid.Column="3" Grid.Row="5" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,16,0,17">
+                    <TextBox 
+                         Text="{Binding CurrentOrder.Kr3D, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  MaxLength="15" 
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Grid.Row="5" Grid.Column="4" Margin="20,0,20,0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Борт"/>
+                <Border Grid.Column="5" Grid.Row="5" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,16">
+                    <TextBox 
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Side, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Цоколь"/>
+                <Border Grid.Column="1" Grid.Row="6" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,17">
+                    <TextBox
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Base, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Стекла"/>
+                <Border Grid.Column="3" Grid.Row="6" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,16">
+                    <TextBox
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Glass, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Grid.Row="6" Grid.Column="4" Margin="20,0,20,0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Вытяжка"/>
+                <Border Grid.Column="5" Grid.Row="6" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,16">
+                    <TextBox 
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.RangeHood, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Мойка"/>
+                <Border Grid.Column="1" Grid.Row="7" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,17">
+                    <TextBox 
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Wash, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+                <TextBlock Margin="20,0,20,0" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" Style="{StaticResource TextBlock}" Text="Ст. панель"/>
+                <Border Grid.Column="3" Grid.Row="7" Background="{StaticResource LightPink}" Height="42" CornerRadius="20" Margin="0,17,0,17">
+                    <TextBox 
+                        MaxLength="15" 
+                        Text="{Binding CurrentOrder.Panel, Mode=TwoWay}"
+     Style="{StaticResource TextBox}" 
+     HorizontalAlignment="Stretch"
+   VerticalAlignment="Center"
+Margin="10,0"/>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Background="{StaticResource Purple}" Content="Назад" Grid.Column="0"
+                    Command="{Binding BackCommand}"
+             Width="150" 
+             Height="50"
+             Style="{StaticResource Button}"
+             Foreground="White"/>
+            <Button Background="{StaticResource Purple}" 
+                    Command="{Binding SaveCommand}"
+             Content="Сохранить"  
+             Grid.Column="1"
+             Foreground="White"
+                     Width="202" 
+                     Height="50"
+                     Style="{StaticResource Button}"
+                   />
+        </Grid>
+    </Grid>
+</Page>

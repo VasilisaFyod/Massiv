@@ -1,0 +1,36 @@
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.InkML;
+using Massiv.Models;
+using Massiv.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Massiv.Views
+{
+    /// <summary>
+    /// Логика взаимодействия для CUDLogistTable.xaml
+    /// </summary>
+    public partial class CUDLogistTable : Page
+    {
+        public CUDLogistTable(int choice, MassivContext context = null, LogistTable orderToEdit = null, string tableType = null)
+        {
+            InitializeComponent();
+
+            var dbContext = context ?? MassivContext.GetContext();
+
+            DataContext = new CUDLogistTableViewModel(choice, dbContext, orderToEdit, tableType);
+        }
+    }
+}
