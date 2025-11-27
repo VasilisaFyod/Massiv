@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Massiv.Models;
 
@@ -45,7 +46,14 @@ public partial class LogistTable
 
     public bool? IsCompleted { get; set; } = false;
 
-    public bool IsDeleted { get; set; } = false;
+    public bool? IsDeleted { get; set; } = false;
 
     public string? ColorMark { get; set; }
+
+    [NotMapped]
+    public bool CanEdit => !IsDeleted.Value && !IsCompleted.Value;
+    public bool CanRestore => IsDeleted.Value;
+    public bool CanBack => IsCompleted.Value && !IsDeleted.Value;
+    public bool CanComplete => !IsCompleted.Value && !IsDeleted.Value;
+    public bool CanDelete => !IsDeleted.Value;
 }

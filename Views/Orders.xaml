@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:Massiv.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1300"
+      xmlns:converters="clr-namespace:Massiv.Services"
       Title="Orders">
+    
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.InkML;
+using Massiv.Models;
+using Massiv.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +24,13 @@ namespace Massiv.Views
     /// </summary>
     public partial class CUDLogistTable : Page
     {
-        public CUDLogistTable()
+        public CUDLogistTable(int choice, MassivContext context = null, LogistTable orderToEdit = null, string tableType = null)
         {
             InitializeComponent();
+
+            var dbContext = context ?? MassivContext.GetContext();
+
+            DataContext = new CUDLogistTableViewModel(choice, dbContext, orderToEdit, tableType);
         }
     }
 }

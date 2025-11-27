@@ -6,44 +6,20 @@ using System.Windows.Input;
 
 namespace Massiv.ViewModels
 {
-    public class DeletedLogistTablesViewModel : ViewModelBase
+    public class DeletedLogistTablesViewModel : BaseLogistTablesViewModel
     {
-        private readonly MassivContext _context;
-        private readonly string _tableType;
-        public ObservableCollection<LogistTable> LogistTables { get; set; }
-        public ICommand MenuCommand { get; }
+        public override bool IsButtonAddVisible => false;
+        public override bool IsButtonExportVisible => false;
 
         public DeletedLogistTablesViewModel(MassivContext context, string tableType = null)
+            : base(context, tableType) { }
+
+        protected override IQueryable<LogistTable> GetBaseQuery()
         {
-            _context = context;
-            _tableType = tableType;
-            LogistTables = new ObservableCollection<LogistTable>();
-            MenuCommand = new RelayCommand(Menu);
-            LoadData();
+            return _context.LogistTables
+                .Where(lt => lt.IsDeleted == true);
         }
 
-        private void LoadData()
-        {
-            var query = _context.LogistTables.Where(lt => lt.IsDeleted == true);
-
-            if (!string.IsNullOrEmpty(_tableType))
-            {
-                query = query.Where(lt => lt.TableType == _tableType);
-            }
-
-            var tables = query.ToList();
-
-            LogistTables.Clear();
-            foreach (var table in tables)
-            {
-                LogistTables.Add(table);
-            }
-        }
-        private void Menu()
-        {
-            var menuWindow = new MenuView();
-            menuWindow.DataContext = new MenuViewModel();
-            menuWindow.ShowDialog();
-        }
+        protected override int GetExportType() => 4;
     }
 }
