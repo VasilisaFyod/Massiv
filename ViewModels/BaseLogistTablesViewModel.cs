@@ -268,7 +268,7 @@ namespace Massiv.ViewModels
         protected virtual void ExportToExcel()
         {
             var exportExcelWindow = new ExportExcel();
-            exportExcelWindow.DataContext = new ExportExcelViewModel(exportExcelWindow, _context, GetExportType());
+            exportExcelWindow.DataContext = new ExportExcelViewModel(exportExcelWindow, _context, GetExportType(), _tableType);
             exportExcelWindow.ShowDialog();
         }
 
