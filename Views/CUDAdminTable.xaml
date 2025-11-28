@@ -53,7 +53,7 @@
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Center"
                                Margin="10,0"
-                               Text="{Binding Login}"/>
+                               Text="{Binding CurrentUser.Login}"/>
                 </Border>
                 <TextBlock Grid.Row="1" Grid.Column="0"
                            Style="{StaticResource TextBlock}" 
@@ -62,16 +62,17 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"/>
                 <Border Grid.Row="1" Grid.Column="1" 
-                        Background="White" 
-                        Height="42" 
-                        CornerRadius="20"
-                        VerticalAlignment="Center">
+        Background="White" 
+        Height="42" 
+        CornerRadius="20"
+        VerticalAlignment="Center">
                     <ComboBox
-                    IsEnabled="{Binding IsRead, Converter={StaticResource BooleanToIndexConverter}}"
-SelectedIndex="{Binding CurrentOrder.TableAvailable, Converter={StaticResource BooleanToIndexConverter}, Mode=TwoWay}"
-Style="{StaticResource RoundComboBoxStyleWhite}"
-Margin="10,0"
-VerticalAlignment="Center"/>
+        SelectedItem="{Binding SelectedRole, Mode=TwoWay}"
+        ItemsSource="{Binding Roles}"
+        DisplayMemberPath="Name"
+        Style="{StaticResource RoundComboBoxStyleWhite}"
+        Margin="10,0"
+        VerticalAlignment="Center"/>
                 </Border>
             </Grid>
             <Button Grid.Row="2" 
@@ -81,7 +82,7 @@ VerticalAlignment="Center"/>
                 Width="150" 
                 Height="50"
                 Margin="0,0,0,20"
-                Command="{Binding LogoutCommand}"/>
+                Command="{Binding SaveCommand}"/>
         </Grid>
     </Border>
 </Window>

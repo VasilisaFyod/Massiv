@@ -15,9 +15,9 @@
         </Grid.RowDefinitions>
         <DataGrid Width="600" Margin="0,0"
                   Grid.Row="0" 
-                  SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
-                  x:Name="DGridOrder" 
-                  ItemsSource="{Binding Orders}"
+                  SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                  x:Name="DGridUser" 
+                  ItemsSource="{Binding Users}"
                   AutoGenerateColumns="False" 
                   IsReadOnly="True"  
                   Style="{StaticResource CustomDataGridStyle}"
@@ -26,9 +26,9 @@
                   CellStyle="{StaticResource CustomCellStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Логин" 
-                    Binding="{Binding NumberOrder}" 
+                    Binding="{Binding Login}" 
                     Width="*"/>
-                <DataGridTextColumn Header="Роль" Binding="{Binding Product}" Width="*"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}" Width="*"/>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -37,11 +37,9 @@
                                     <MenuItem.Header>
                                         <Image Width = "25" Source = "pack://application:,,,/Images/actions.png" />
                                     </MenuItem.Header>
-                                    <MenuItem Header="Редактировать" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanEdit, Converter={StaticResource BooleanToVisibilityConverter}}"   Command="{Binding DataContext.EditOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-         CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Удалить" Style="{StaticResource SubMenuItemStyle}" Visibility="{Binding CanDelete, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                                                   Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Редактировать" Style="{StaticResource SubMenuItemStyle}" Command="{Binding DataContext.EditUserCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                                    <MenuItem Header="Удалить" Style="{StaticResource SubMenuItemStyle}" 
+                                                                                   Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
                                 </MenuItem>
                             </Menu>
                         </DataTemplate>
@@ -62,8 +60,8 @@ CommandParameter="{Binding}"/>
                             Width="202" 
                             Height="50"
                             Style="{StaticResource Button}"
-                     Command="{Binding AddOrderCommand}"
-                     Visibility="{Binding IsButtonAddVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                     Command="{Binding AddUserCommand}"
+                     />
         </Grid>
     </Grid>
 </Page>

@@ -30,7 +30,7 @@ namespace Massiv.ViewModels
             set
             {
                 _currentMenuItem = value;
-                CurrentPage = value?.Page;
+            
                 OnPropertyChanged(nameof(CurrentMenuItem));
             }
         }
@@ -52,7 +52,7 @@ namespace Massiv.ViewModels
             _ordersFactory = ordersFactory;
             _logistTablesFactory = logistTablesFactory;
             _dbContext = dbContext;
-
+            CurrentPage = new AdminTable();
             MenuItems = new ObservableCollection<MenuItem>
             {
                 new MenuItem("Заказы", () => _ordersFactory(1, null)),

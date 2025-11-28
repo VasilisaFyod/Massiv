@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Massiv.ViewModels;
 namespace Massiv.Views
 {
     /// <summary>
@@ -23,6 +23,7 @@ namespace Massiv.Views
         public AdminTable()
         {
             InitializeComponent();
+            DataContext = new AdminTableViewModel();
         }
     }
 }
