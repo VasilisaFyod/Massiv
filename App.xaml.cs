@@ -9,7 +9,18 @@ namespace Massiv
 {
     public partial class App : Application
     {
-        public static User CurrentUser { get; private set; }
+        public static event EventHandler CurrentUserChanged;
+
+        private static User _currentUser;
+        public static User CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                CurrentUserChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
 
         public static void Login(User user)
         {

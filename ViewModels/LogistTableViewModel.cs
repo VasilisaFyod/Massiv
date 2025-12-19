@@ -20,6 +20,6 @@ namespace Massiv.ViewModels
                 .Where(lt => lt.IsDeleted != true && lt.IsCompleted != true);
         }
 
-        protected override int GetExportType() => 4; 
+        protected override int GetExportType() => 3; 
     }
 }

@@ -13,13 +13,11 @@ namespace Massiv.Services
             {
                 try
                 {
-                    // Используем системный ColorConverter для преобразования строки в Color
                     var color = (Color)System.Windows.Media.ColorConverter.ConvertFromString(colorHex);
                     return new SolidColorBrush(color);
                 }
                 catch
                 {
-                    // Возвращаем прозрачный цвет по умолчанию в случае ошибки
                     return new SolidColorBrush(Colors.Transparent);
                 }
             }

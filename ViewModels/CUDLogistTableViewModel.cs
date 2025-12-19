@@ -101,7 +101,7 @@ namespace Massiv.ViewModels
             {
                 errors.Add("Номер заказа обязателен");
             }
-            else if (_choice == 1 && _context.Orders.Any(o => o.NumberOrder == CurrentOrder.OrderNumber))
+            else if (_choice == 1 && _context.LogistTables.Any(o => o.OrderNumber == CurrentOrder.OrderNumber))
             {
                 errors.Add("Заказ с таким номером уже существует");
             }
@@ -113,6 +113,10 @@ namespace Massiv.ViewModels
                 {
                     errors.Add("Заказ с таким номером уже существует");
                 }
+            }
+            if (CurrentOrder.PlanDate == default)
+            {
+                errors.Add("Плановая дата отгрузки обязательна");
             }
             if (errors.Any())
             {

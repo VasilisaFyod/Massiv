@@ -63,6 +63,7 @@ namespace Massiv.ViewModels
                 {
                     var context = MassivContext.GetContext();
                     return await context.Users
+                        .Include(u => u.Role)
                         .AsNoTracking()
                         .FirstOrDefaultAsync(u => u.Login == Login);
                 });

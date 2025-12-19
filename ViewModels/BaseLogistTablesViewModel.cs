@@ -37,7 +37,7 @@ namespace Massiv.ViewModels
         public ICommand RestoreOrderCommand { get; }
         public ICommand BackOrderCommand { get; }
         public ICommand MenuCommand { get; }
-        public ICommand ChangeColorCommand { get; }
+        //public ICommand ChangeColorCommand { get; }
 
         public abstract bool IsButtonAddVisible { get; }
         public abstract bool IsButtonExportVisible { get; }
@@ -48,7 +48,6 @@ namespace Massiv.ViewModels
             _tableType = tableType;
             _currentUserRole = userRole;
             LogistTables = new ObservableCollection<LogistTable>();
-
             LoadOrdersCommand = new RelayCommand(async () => await LoadDataAsync());
             AddOrderCommand = new RelayCommand(AddOrder);
             ExportToExcelCommand = new RelayCommand(ExportToExcel);
@@ -58,7 +57,7 @@ namespace Massiv.ViewModels
             RestoreOrderCommand = new RelayCommand(RestoreOrder);
             BackOrderCommand = new RelayCommand(BackOrder);
             MenuCommand = new RelayCommand(Menu);
-            ChangeColorCommand = new RelayCommand<string>(ExecuteChangeColorCommand);
+            //ChangeColorCommand = new RelayCommand<string>(ExecuteChangeColorCommand);
 
             LoadOrdersCommand.Execute(null);
         }
@@ -143,7 +142,7 @@ namespace Massiv.ViewModels
                 }
 
                 var editContext = MassivContext.GetContext();
-                var editPage = new CUDLogistTable(2, editContext, orderToEdit);
+                var editPage = new CUDLogistTable(2, editContext, orderToEdit, _tableType);
                 NavigateToPage(editPage, "Редактирование логистической таблицы");
             }
             catch (Exception ex)
@@ -226,44 +225,44 @@ namespace Massiv.ViewModels
             }
         }
 
-        protected virtual void ExecuteChangeColorCommand(string colorName)
-        {
-            if (SelectedOrder != null)
-            {
-                try
-                {
-                    using (var localContext = MassivContext.GetContext())
-                    {
-                        var colorHex = colorName switch
-                        {
-                            "Orange" => "#FFB236",
-                            "Red" => "#CB6C6C",
-                            "LightBlue" => "#BCF3FF",
-                            "Gray" => "#D9D9D9",
-                            _ => "#F1BCFF"
-                        };
+        //protected virtual void ExecuteChangeColorCommand(string colorName)
+        //{
+        //    if (SelectedOrder != null)
+        //    {
+        //        try
+        //        {
+        //            using (var localContext = MassivContext.GetContext())
+        //            {
+        //                var colorHex = colorName switch
+        //                {
+        //                    "Orange" => "#FFB236",
+        //                    "Red" => "#CB6C6C",
+        //                    "LightBlue" => "#BCF3FF",
+        //                    "Gray" => "#F1BCFF",
+        //                    _ => "#F1BCFF"
+        //                };
 
-                        var selectedId = SelectedOrder.LogistTableId;
+        //                var selectedId = SelectedOrder.LogistTableId;
 
-                        var itemToUpdate = localContext.LogistTables
-                            .FirstOrDefault(lt => lt.LogistTableId == selectedId);
+        //                var itemToUpdate = localContext.LogistTables
+        //                    .FirstOrDefault(lt => lt.LogistTableId == selectedId);
 
-                        if (itemToUpdate != null)
-                        {
-                            itemToUpdate.ColorMark = colorHex;
-                            localContext.SaveChanges();
-                            LoadDataAsync();
-                            SelectedOrder = LogistTables.FirstOrDefault(lt => lt.LogistTableId == selectedId);
-                            OnPropertyChanged(nameof(SelectedOrder));
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ShowError($"Ошибка при изменении цвета: {ex.Message}");
-                }
-            }
-        }
+        //                if (itemToUpdate != null)
+        //                {
+        //                    itemToUpdate.ColorMark = colorHex;
+        //                    localContext.SaveChanges();
+        //                    LoadDataAsync();
+        //                    SelectedOrder = LogistTables.FirstOrDefault(lt => lt.LogistTableId == selectedId);
+        //                    OnPropertyChanged(nameof(SelectedOrder));
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ShowError($"Ошибка при изменении цвета: {ex.Message}");
+        //        }
+        //    }
+        //}
 
         protected virtual void ExportToExcel()
         {

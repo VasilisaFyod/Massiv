@@ -56,4 +56,31 @@ public partial class LogistTable
     public bool CanBack => IsCompleted.Value && !IsDeleted.Value;
     public bool CanComplete => !IsCompleted.Value && !IsDeleted.Value;
     public bool CanDelete => !IsDeleted.Value;
+
+    [NotMapped]
+    public string ColorStatus
+    {
+        get
+        {
+            if (IsCompleted == true)
+                return "#87F39E";
+
+            if (PlanDate == null)
+                return "#F1BCFF";
+
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            var completionDate = PlanDate.Value;
+            var daysDifference = completionDate.DayNumber - today.DayNumber;
+
+            if (daysDifference < 0)
+                return "#CB6C6C";
+            else if (daysDifference <= 7)
+                return "#FFB236";
+            else if (daysDifference <= 21)
+                return "#F3EE87";
+            else
+                return "#BCF3FF";
+        }
+    }
+
 }

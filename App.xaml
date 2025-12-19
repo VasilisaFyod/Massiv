@@ -9,10 +9,13 @@
             >
     <Application.Resources>
         <ResourceDictionary>
+            <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+            <converters:PercentageToColorConverter x:Key="PercentageToColorConverter"/>
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <converters:DateOnlyToDateTimeConverter x:Key="DateOnlyToDateTimeConverter"/>
             <converters:BooleanToIndexConverter  x:Key="BooleanToIndexConverter"/>
             <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+            <converters:BooleanToStyleConverter x:Key="BooleanToStyleConverter"/>   
             <converters:HexToColorConverter x:Key="HexToColorConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/Colors.xaml"/>
