@@ -14,7 +14,7 @@ namespace Massiv.ViewModels
         private ObservableCollection<Order> _orders;
         private string _searchText;
         private Order _selectedOrder;
-
+        private readonly string _currentUserRole;
         public ObservableCollection<Order> Orders
         {
             get => _orders;
@@ -48,6 +48,19 @@ namespace Massiv.ViewModels
 
         public abstract bool IsButtonAddVisible { get; }
         public abstract bool IsButtonExportVisible { get; }
+        public bool IsButtonMenuVisible
+        {
+            get
+            {
+                switch (_currentUserRole)
+                {
+                    case "Логист":
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
         protected abstract IQueryable<Order> GetBaseQuery();
         protected abstract int GetExportType();
 
@@ -68,6 +81,7 @@ namespace Massiv.ViewModels
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             Orders = new ObservableCollection<Order>();
+            _currentUserRole = App.CurrentUser?.Role?.Name ?? string.Empty;
 
             LoadOrdersCommand = new RelayCommand(async () => await LoadOrdersAsync());
             AddOrderCommand = new RelayCommand(AddOrder);

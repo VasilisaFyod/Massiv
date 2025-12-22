@@ -15,7 +15,7 @@ namespace Massiv.ViewModels
         private int _choice;
         private Order _currentOrder = new Order();
         private ObservableCollection<WorkshopOrder> _workshopOrders = new ObservableCollection<WorkshopOrder>();
-
+        private readonly string _currentUserRole;
         public ObservableCollection<WorkshopOrder> WorkshopOrders
         {
             get => _workshopOrders;
@@ -61,7 +61,7 @@ namespace Massiv.ViewModels
             }
         }
         public bool IsReadVisible => _choice != 3;
-        public bool ShowReadyCheckboxes => _choice == 3;
+        public bool ShowReadyCheckboxes => _choice == 3 && (_currentUserRole == "Логист");
         public bool ShowReadyCheckboxesAndHasOrder0 => ShowReadyCheckboxes && WorkshopOrders.Count > 0 && !string.IsNullOrEmpty(WorkshopOrders[0].NumberWorkshopOrder);
         public bool ShowReadyCheckboxesAndHasOrder1 => ShowReadyCheckboxes && WorkshopOrders.Count > 1 && !string.IsNullOrEmpty(WorkshopOrders[1].NumberWorkshopOrder);
         public bool ShowReadyCheckboxesAndHasOrder2 => ShowReadyCheckboxes && WorkshopOrders.Count > 2 && !string.IsNullOrEmpty(WorkshopOrders[2].NumberWorkshopOrder);
@@ -75,6 +75,7 @@ namespace Massiv.ViewModels
         public CUDViewModel(int choice, MassivContext context, Order orderToEdit = null)
         {
             _context = context;
+            _currentUserRole = App.CurrentUser?.Role?.Name ?? string.Empty;
             if (orderToEdit != null)
             {
                 _context.Entry(orderToEdit).State = EntityState.Detached;
@@ -209,6 +210,10 @@ namespace Massiv.ViewModels
                 {
                     errors.Add("Дата сдачи не может быть раньше даты договора");
                 }
+            }
+            if (CurrentOrder.OrderDate == default)
+            {
+                errors.Add("Дата оформления обязательна");
             }
             if (errors.Any())
             {

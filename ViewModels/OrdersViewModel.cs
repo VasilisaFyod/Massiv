@@ -1,4 +1,5 @@
 ﻿using Massiv.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Massiv.ViewModels
 {

@@ -45,7 +45,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" 
-                    Style="{StaticResource RoundButtonStyleTransparent}" 
+                    Style="{Binding IsGeneralTableSelected, 
+                           Converter={StaticResource BooleanToStyleConverter},
+                           ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
                     Foreground="White" 
                     Content="Общая таблица"
                     VerticalAlignment="Center"
@@ -61,7 +63,11 @@
                    FontSize="18"/>
 
             <Button Grid.Row="3" 
-                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Style="{Binding IsBelarusSelected, 
+                       Converter={StaticResource BooleanToStyleConverter},
+                       ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
+                    VerticalAlignment="Center"
+HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="18"
                 Command="{Binding OpenLogistTableCommand}"
@@ -73,7 +79,11 @@
             </Button>
 
             <Button Grid.Row="4" 
-                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Style="{Binding IsInternalSelected, 
+                       Converter={StaticResource BooleanToStyleConverter},
+                       ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
+                    VerticalAlignment="Center"
+HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="18"
                 Command="{Binding OpenLogistTableCommand}"
@@ -85,7 +95,11 @@
             </Button>
 
             <Button Grid.Row="5" 
-                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Style="{Binding IsMoscowSelected, 
+                       Converter={StaticResource BooleanToStyleConverter},
+                       ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
+                    VerticalAlignment="Center"
+HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="18"
                 Command="{Binding OpenLogistTableCommand}"
@@ -97,7 +111,11 @@
             </Button>
 
             <Button Grid.Row="6" 
-                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Style="{Binding IsCorpusSelected, 
+                       Converter={StaticResource BooleanToStyleConverter},
+                       ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
+                    VerticalAlignment="Center"
+HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="18"
                 Command="{Binding OpenLogistTableCommand}"
@@ -109,7 +127,11 @@
             </Button>
 
             <Button Grid.Row="7" 
-                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Style="{Binding IsSpSelected, 
+                       Converter={StaticResource BooleanToStyleConverter},
+                       ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
+                    VerticalAlignment="Center"
+HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="18"
                 Command="{Binding OpenLogistTableCommand}"
@@ -119,12 +141,17 @@
                     <TextBlock Text="Сп"/>
                 </StackPanel>
             </Button>
+
             <Button Grid.Row="8" 
-                Style="{StaticResource RoundButtonStyleTransparent}" 
+                Style="{Binding IsReclamationsSelected, 
+                       Converter={StaticResource BooleanToStyleConverter},
+                       ConverterParameter='ActiveMenuButtonStyle|InactiveMenuButtonStyle'}" 
+                    VerticalAlignment="Center"
+HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="18"
                 Command="{Binding OpenLogistTableCommand}"
-                CommandParameter="r">  
+                CommandParameter="r">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Text="&#9726;"  Margin="0,0,8,0"/>
                     <TextBlock Text="Рекламации"/>
@@ -132,4 +159,4 @@
             </Button>
         </Grid>
     </Border>
-</Window>
+</Window> 

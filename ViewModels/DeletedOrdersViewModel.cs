@@ -50,6 +50,6 @@ namespace Massiv.ViewModels
 
         protected override void AddOrder() { }
         protected override void ExportToExcel() { }
-        protected override void Menu() { }
+        
     }
 }

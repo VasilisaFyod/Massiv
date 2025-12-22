@@ -83,7 +83,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridRow}">
                     <Border CornerRadius="30"
-                        Background="{Binding ColorMark, Converter={StaticResource HexToColorConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Background="{Binding ColorStatus, Converter={StaticResource HexToColorConverter}, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,5"
                         Padding="0,10">
                         <DataGridCellsPresenter/>
